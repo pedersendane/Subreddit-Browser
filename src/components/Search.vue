@@ -15,11 +15,12 @@
           <p class="score">Score: {{result.data.score}}</p>
           <p class="updown">Upvotes: {{result.data.ups}} Downvotes: {{result.data.downs}}</p> 
             <div v-if="result.data.url_overridden_by_dest">
-          <p class="subredditType">Subreddit Type: {{result.data.subreddit_type}}</p> 
-              <img v-bind:src="result.data.url_overridden_by_dest"/> 
+              <p class="subredditType">Subreddit Type: {{result.data.subreddit_type}}</p> 
+              <img v-bind:src="result.data.thumbnail" v-bind:height="result.data.thumbnail_height" v-bind:width="result.data.thumbnail_width"/> 
             </div>
             <div v-else>
-              
+              <p class="subredditType">Subreddit Type: {{result.data.subreddit_type}}</p> 
+              <img v-bind:src="result.data.thumbnail" v-bind:height="result.data.thumbnail_height" v-bind:width="result.data.thumbnail_width"/> 
             </div>
           <p class="selftext">{{result.data.selftext}}</p>
       </div>
@@ -53,7 +54,9 @@ export default {
         .then( response => {
             console.log(response.data.data.children);
             // console.log(response.data.data.children.preview.images);
-            this.results = response.data.data.children;
+            var res = response.data.data.children;
+            console.warn(res[0].data.score);
+            this.results = res.sort((a,b) => a.data.score < b.data.score)
             this.errormessage = '';
             }).catch((error) => { 
               console.warn('Not good man :(');
@@ -81,7 +84,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .results img {
-    height: 300px;
     margin: 10px;
 }
 h1, h2 {
