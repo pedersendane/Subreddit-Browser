@@ -1,8 +1,8 @@
 {
-  "name": "nasa-search",
+  "name": "subreddit-browser",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Erik Hanchett <erik.hanchett@gmail.com>",
+  "description": "A Vue.js project to browse subreddits",
+  "author": "Dane Pedersen",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.20.0",
     "vue": "^2.3.3"
   },
   "devDependencies": {
